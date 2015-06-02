@@ -39,10 +39,10 @@
 init(Opts) ->
     {ok, #state{url = proplists:get_value(url, Opts)}}.
 
-%% check(#mqtt_client{username = undefined}, _Password, _State) ->
-%%     {error, "Username undefined"};
-%% check(_Client, undefined, _State) ->
-%%     {error, "Password undefined"};
+check(#mqtt_client{username = undefined}, _Password, _State) ->
+    {error, "Username undefined"};
+check(_Client, undefined, _State) ->
+    {error, "Password undefined"};
 check(#mqtt_client{username = Username}, Password, #state{url = Url}) ->
     io:fwrite(Url),
     case httpc:request(post,
